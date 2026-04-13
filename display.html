@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block body %}
+    <h2>All Video Game Cars listed so far</h2>
+    <ul>
+        {% for name, car in cars.items() %}
+            <li>{{ name }}:
+            {% for key, value in car.items() %}
+                <span>{{key}} : {{value}}</span>
+                {% endfor %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
