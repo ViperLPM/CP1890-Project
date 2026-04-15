@@ -1,14 +1,19 @@
 {% extends 'index.html' %}
 
 {% block body %}
-    <h2>All Video Game Cars listed so far</h2>
-    <ul>
-        {% for name, car in cars.items() %}
-            <li>{{ name }}:
-            {% for key, value in car.items() %}
-                <span>{{key}} : {{value}}</span>
-            {% endfor %}
-            </li>
+        <div class = "container">
+            <div class = "row">
+        {% for car in cars %}
+            <div class="col-md-4 col-sm-6 col-12 mb-3">
+                <div class="card p-3">
+                    <p>{{  car.brand  }}</p>
+                    <p>{{   car.car    }}</p>
+                    <p>{{   car.year   }}</p>
+                    <p>{{   car.game   }}</p>
+                    <image height = 128 src="{{ file_location }}/{{ car.image }}" class="card_img-top"/>
+                </div>
+            </div>
         {% endfor %}
-    </ul>
+            </div>
+        </div>
 {% endblock %}

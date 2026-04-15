@@ -13,11 +13,11 @@ allowed_types = [".png", ".jpg"]
 
 @app.route("/", methods =["GET"])
 def index():
-    if "GamingCars" not in session:
+    if "cars" not in session:
         print("Clearing the list")
-        session["GamingCars"] = []
+        session["cars"] = []
     
-    print(session.get("GamingCars"))
+    print(session.get("cars"))
     return render_template("index.html", cars=session.get("GamingCars"), file_location=file_save_location)
 
 @app.route("/add", methods=["GET", "POST"])
@@ -25,9 +25,9 @@ def add():
     if request.method == "GET":
         return render_template("form.html")
     elif request.method == "POST":
-        if "GamingCars" not in session:
+        if "cars" not in session:
             print("Clearing data from the session")
-            session["GamingCars"] = []
+            session["cars"] = []
         brand = request.form.get("brand", "invalid")
         car = request.form.get("car", "invalid")
         year = request.form.get("year", "invalid")
@@ -40,16 +40,21 @@ def add():
                 car_image = f"{uuid.uuid4().hex}{extension}"
                 filename = os.path.join(file_save_location, car_image)
                 uploaded_file.save(filename)
-                session["GamingCars"].append({"brand": brand, "car": car, "year": year, "image": car_image})
+                session["cars"].append({"brand": brand, "car": car, "year": year, "game": game, "image": car_image})
             else:
                 flash("This file is of the wrong type", "error")
                 return redirect("./add")
         
 
-        print(session.get("GamingCars"))
+        print(session.get("cars"))
         session.modified = True
         flash("Car successfully added to the list.", "message")
         return redirect("/")
+    
+@app.route('/display')
+def display():
+    print(session)
+    return render_template('display.html', cars=session.get("cars", []), file_location=file_save_location)
 
 if __name__ == "__main__":
    app.run(debug=True, host="0.0.0.0")
