@@ -1,0 +1,23 @@
+{% extends 'index.html' %}
+
+{% block body %}
+    <h3>Enter a Video Game Car</h3>
+    <form action="/form" method = "post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="brand" class="form-label">Brand</label>
+            <input type="text" class="form-control" name="title" aria-describedby="manufactuer">
+        </div>
+        <div class="mb-3">
+            <label for="car" class="form-label">Car</label>
+            <input type="text" class="form-control" name="car">
+        </div>
+        <div class="mb-3">
+            <label for="year" class="form-label">Year</label>
+            <input type="text" class="form-control" name="year">
+        </div>
+        <div class="mb-3">
+            <input type="file" class="form-control" name="file">
+        </div>
+        <button type="submit" class="btn btn-primary">Add Ride</button>
+    </form>
+{% endblock %}
