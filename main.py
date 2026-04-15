@@ -4,8 +4,8 @@ import os
 import uuid
 
 app = Flask(__name__)
-app.config['SESSION_PERMANENT'] = False
-app.config['SESSION_TYPE'] = "filesystem"
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 file_save_location = "static/images"
@@ -20,7 +20,7 @@ def index():
     print(session.get("GamingCars"))
     return render_template("index.html", cars=session.get("GamingCars"), file_location=file_save_location)
 
-@app.route("/form", methods=["GET", "POST"])
+@app.route("/add", methods=["GET", "POST"])
 def add():
     if request.method == "GET":
         return render_template("form.html")
@@ -43,7 +43,7 @@ def add():
                 session["GamingCars"].append({"brand": brand, "car": car, "year": year, "image": car_image})
             else:
                 flash("This file is of the wrong type", "error")
-                return redirect("./form")
+                return redirect("./add")
         
 
         print(session.get("GamingCars"))
