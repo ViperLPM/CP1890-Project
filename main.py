@@ -9,7 +9,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
 file_save_location = "static/images"
-allowed_types = [".png", ".jpg"]
+allowed_types = [".png", ".jpg", ".webp"]
 
 @app.route("/", methods =["GET"])
 def index():
