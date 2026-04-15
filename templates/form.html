@@ -1,8 +1,8 @@
-{% extends 'index.html' %}
+{% extends "index.html" %}
 
 {% block body %}
     <h3>Enter a Video Game Car</h3>
-    <form action="/form" method = "post" enctype="multipart/form-data">
+    <form action="/add" method = "post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="brand" class="form-label">Brand</label>
             <input type="text" class="form-control" name="title" aria-describedby="manufactuer">
@@ -16,8 +16,13 @@
             <input type="text" class="form-control" name="year">
         </div>
         <div class="mb-3">
+            <label for="game" class="form-label">Game</label>
+            <input type="text" class="form-control" name="game">
+        </div>
+        <div class="mb-3">
             <input type="file" class="form-control" name="file">
         </div>
         <button type="submit" class="btn btn-primary">Add Ride</button>
     </form>
+    <script src="/static/verify.js"></script>
 {% endblock %}
