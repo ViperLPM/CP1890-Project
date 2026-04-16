@@ -28,7 +28,6 @@ def add():
         if "cars" not in session:
             print("Clearing data from the session")
             session["cars"] = []
-        brand = request.form.get("brand", "invalid")
         car = request.form.get("car", "invalid")
         year = request.form.get("year", "invalid")
         game = request.form.get("game", "invalid")
@@ -40,7 +39,7 @@ def add():
                 car_image = f"{uuid.uuid4().hex}{extension}"
                 filename = os.path.join(file_save_location, car_image)
                 uploaded_file.save(filename)
-                session["cars"].append({"brand": brand, "car": car, "year": year, "game": game, "image": car_image})
+                session["cars"].append({"car": car, "year": year, "game": game, "image": car_image})
             else:
                 flash("This file is of the wrong type", "error")
                 return redirect("./add")
