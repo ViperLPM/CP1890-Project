@@ -8,3 +8,5 @@ To use this website, heres what you need to do:
 4. in the folder for the project, use python to run the main.py file
 5. enter the ip address on the server at port 5000 (can be any)
 6. Done! Try out adding and removing cars to the session
+
+*When adding images, make sure to download them and add them to the static/Images folder in the project, otherwise an error will occur.*
