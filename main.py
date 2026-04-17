@@ -55,7 +55,7 @@ def display():
     print(session)
     return render_template('display.html', cars=session.get("cars", []), file_location=file_save_location)
 
-@app.route('/remove')
+"""@app.route('/remove')
 def remove():
     if request.method == "GET":
         return render_template("remove.html")
@@ -64,12 +64,30 @@ def remove():
             print("Clearing data from the session")
             session["cars"] = []
         car = request.form.get("car", "invalid")
-        if "cars" in session:
-            for car in session:
-                session["cars"].remove({"car": car})
+        if car in session:
+            del session["cars"][car]
         else:
             flash("This file is of the wrong type", "error")
             return redirect("./remove")
+    return render_template("remove.html")"""
+
+@app.route('/remove')
+def remove():
+    return render_template('remove.html')
+
+@app.route('/removed_cars', methods=['POST'])
+def removed_cars():
+    
+    delete_car = request.form.get("car", "invalid")
+
+    car_list = session["cars"]
+    for i, ride in enumerate(car_list):
+        print(ride)
+        if ride['car'] == delete_car:
+            car_list.pop(i)
+
+    return render_template('remove.html')
+    
 
 if __name__ == "__main__":
    app.run(debug=True, host="0.0.0.0")
