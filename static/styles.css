@@ -1,0 +1,11 @@
+
+.error {
+    background-color: beige;
+    color: red;
+    border: 1px solid red;
+}
+.message {
+    background-color: aqua;
+    color: black;
+    border: 1px solid black;
+}
