@@ -1,19 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Project</title>
+    <head>
+        <title>Liam's Dealership for Iconic Gaming Cars</title>
+        <link rel="stylesheet" type="text/css" href="/static/styles.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-DQvkBjpPgn7RC31MCQoOeC9TI2kdqa4+BSgNMNj8v77fdC77Kj5zpWFTJaaAoMbC" crossorigin="anonymous">
 </head>
-<body>
-    <h2>CP1890 Project</h2>
-    <a href="/">Home</a>
-    <a href="/add">Add a Ride</a>
-    <a href="/display">All Favourite Cars from Gaming</a>
-
-   {% block body %}
-
-
-   {% endblock %}
-
-</body>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-primary" data-bs-theme="light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link {%if request.path == url_for("index") %} active {% endif %}" href="/"
+              {%if request.path == url_for("index") %} aria-current="page"{% endif %}
+              >Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {%if request.path == url_for("add") %} active {% endif %}" href="/add"
+              {%if request.path == url_for("add") %} aria-current="page"{% endif %}
+              >Add Ride</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {%if request.path == url_for("display") %} active {% endif %}" href="/display"
+              {%if request.path == url_for("display") %} aria-current="page"{% endif %}
+              >All Rides so far</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {%if request.path == url_for("remove") %} active {% endif %}" href="/remove"
+              {%if request.path == url_for("remove") %} aria-current="page"{% endif %}
+              >Remove a Ride</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+        {%  set messages = get_flashed_messages(with_categories=true) %}
+            {%  if messages %}
+                {% for category, message in messages %}
+                    <p class="{{ category }}">{{ message }}</p>
+                {% endfor %}
+            {%  endif %}
+        {% block body %} {% endblock %}
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.4/dist/js/bootstrap.bundle.min.js" integrity="sha384-YUe2LzesAfftltw+PEaao2tjU/QATaW/rOitAq67e0CT0Zi2VVRL0oC4+gAaeBKu" crossorigin="anonymous"></script>
 </html>
